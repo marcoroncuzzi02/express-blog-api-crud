@@ -1,6 +1,3 @@
-const express = require('express');
-const router = express.Router();
-
 const posts = [
     {
       title: "Ciambellone",
@@ -46,29 +43,4 @@ const posts = [
     },
   ];
 
-    // index
-    router.get('/', function (req, res) {
-        res.send('Lista dei post');
-    });
-    // show
-    router.get('/:id', function (req, res) {
-        res.send('Dettagli del post ' + req.params.id);
-    });
-    // store
-    router.post('/post', function (req, res) {
-        res.send('Creazione nuovo post');
-    });
-    // update
-    router.put('/post/:id', function (req, res) {
-        res.send('Modifica integrale del post ' + req.params.id);
-    });
-    // modify
-    router.patch('/post/:id', function (req, res) {
-        res.send('Modifica parziale del post ' + req.params.id);
-    });
-    // destroy
-    router.delete('/post/:id', function (req, res) {
-        res.send('Eliminazione del post ' + req.params.id);
-    });
-
-module.exports = router;
+module.export = posts
