@@ -7,12 +7,12 @@ router.get('/', postController.index);
 // show
 router.get('/:id', postController.show);
 // store
-router.get('/', postController.store);
+router.post('/', postController.store);
 // update
-router.get('/:id', postController.update);
+router.put('/:id', postController.update);
 // modify
-router.get('/:id', postController.modify);
+router.patch('/:id', postController.modify);
 // destroy
-router.get('/:id', postController.destroy);
+router.delete('/:id', postController.destroy);
 
 module.exports = router;
