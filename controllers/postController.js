@@ -7,8 +7,17 @@ function index(req, res) {
 //show
 function show(req, res) {
     const id = parseInt(req.params.id)
-    
-    res.send('Dettagli del post ' + req.params.id);
+    const post = posts.find(post => post.id === id);
+
+    if(!post){
+        res.status(404)
+        return res.json({
+            error: "Not Found",
+            message: "post non trovato"
+        })
+    }
+
+    res.json(post);
 }
 //store
 function store(req, res) {
@@ -24,7 +33,22 @@ function modify(req, res) {
 }
 //destroy
 function destroy(req, res) {
-    res.send('Eliminazione del post ' + req.params.id);
+    const id = parseInt(req.params.id)
+    const post = posts.find(post => post.id === id);
+
+    if(!post){
+        
+        res.status(404)
+
+        return res.json({
+            error: "Not Found",
+            message: "post non trovato"
+        })
+    }
+
+    posts.splice(posts.indexOf(post), 1)
+
+    res.sendStatus(204)
 }
 
 // esportiamo tutto
