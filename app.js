@@ -5,6 +5,8 @@ const postRouter = require('./routers/postRouter');
 
 app.use(express.static('./public/imgs'));
 
+app.use(express.json())
+
 app.get('/', (req, res) => {
 res.send('QUESTO è IL SERVER DEL BLOG')
 })
