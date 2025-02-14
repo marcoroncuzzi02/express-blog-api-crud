@@ -2,7 +2,17 @@ const posts = require('../data/postContent');
 
 //index
 function index(req, res) {
-    res.json(posts);
+
+    let filteredPosts = posts
+
+    if(req.query.tags){
+        let filteredPosts = posts.filter(
+            post => post.tags.includes(req.query.tags)
+        )
+    }
+
+    res.json(filteredPosts);
+
 }
 //show
 function show(req, res) {
@@ -21,12 +31,12 @@ function show(req, res) {
 }
 //store
 function store(req, res) {
-    
+
+    // res.send('Creazione nuovo post');
+
     console.log(req.body)
 
-    res.send('Creazione nuovo post');
-
-    const newId = menu[posts.length - 1].id + 1;
+    const newId = posts[posts.length - 1].id + 1;
 
     const newPost = {
         id: newId,
@@ -45,7 +55,30 @@ function store(req, res) {
 }
 //update
 function update(req, res) {
-    res.send('Modifica integrale del post ' + req.params.id);
+    // res.send('Modifica integrale del post ' + req.params.id);
+    const id = parseInt(req.params.id)
+    const post = posts.find(post => post.id === id);
+
+    if(!post){
+        
+        res.status(404)
+
+        return res.json({
+            error: "Not Found",
+            message: "post non trovato"
+        })
+    }
+
+    post.id = req.body.id
+    post.title = req.body.title
+    post.content = req.body.content
+    post.image = req.body.image
+    post.tags = req.body.tags
+
+    console.log(posts)
+
+    res.json(post)
+
 }
 //modify
 function modify(req, res) {
