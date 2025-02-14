@@ -2,6 +2,11 @@ const express = require('express')
 const app = express()
 const port = 3000
 const postRouter = require('./routers/postRouter');
+const endPointMiddleware = require('./middlewares/endPointMiddleware')
+const errorHandler = require('./middlewares/errorHandler')
+
+app.use(endPointMiddleware)
+app.use(errorHandler)
 
 app.use(express.static('./public/imgs'));
 
