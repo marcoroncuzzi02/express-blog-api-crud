@@ -1,4 +1,4 @@
-function endPointNotFound (err,req,res,next){
+function endPointNotFound (req,res,next){
     res.status(404)
     res.json({
     error: "Not Found",
