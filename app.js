@@ -5,9 +5,6 @@ const postRouter = require('./routers/postRouter');
 const endPointMiddleware = require('./middlewares/endPointMiddleware')
 const errorHandler = require('./middlewares/errorHandler')
 
-app.use(endPointMiddleware)
-app.use(errorHandler)
-
 app.use(express.static('./public/imgs'));
 
 app.use(express.json())
@@ -17,6 +14,9 @@ res.send('QUESTO è IL SERVER DEL BLOG')
 })
 
 app.use("/api/posts", postRouter)
+
+app.use(endPointMiddleware)
+app.use(errorHandler)
 
 app.listen(port, () => {
 console.log(`Example app listening on port ${port}`)
